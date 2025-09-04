@@ -7,19 +7,23 @@ import "./App.css";
 import HomePage from "./pages/Home/HomePage";
 import TodoPage from "./pages/Todo/TodoPage";
 import LoginPage from "./pages/Login/LoginPage";
-import ProtectedRoute from "./components/ProtectedRoute";
 import RegisterPage from "./pages/Register/RegisterPage";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/register" element={<RegisterPage />} />
+        {/* Rute publik yang bisa diakses semua orang */}
+        <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+
+        {/* Rute yang dilindungi. Hanya bisa diakses setelah login. */}
         <Route element={<ProtectedRoute />}>
-          <Route path="/" element={<HomePage />} />
           <Route path="/todos" element={<TodoPage />} />
-        </Route>        
+          {/* Rute terproteksi lainnya bisa ditambahkan di sini */}
+        </Route>
       </Routes>
     </BrowserRouter>
   );
